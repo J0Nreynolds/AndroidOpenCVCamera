@@ -8,7 +8,11 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
+
+import org.opencv.android.CameraBridgeViewBase;
 
 public class CameraActivity extends Activity {
 
@@ -18,7 +22,9 @@ public class CameraActivity extends Activity {
     }
 
     private MyGLSurfaceView mView;
+    private Switch mSwitch = null;
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 1337;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,7 @@ public class CameraActivity extends Activity {
             if (this.shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
                 // Show some text
                 Toast.makeText(context, "Need access to your camera to proceed", Toast.LENGTH_LONG).show();
+                this.finish();
             } else {
                 // No explanation needed; request the permission
                 this.requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
@@ -48,9 +55,26 @@ public class CameraActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         setContentView(R.layout.activity);
 
+        // Setup switch to swap between back and front camera
+        mSwitch = (Switch) findViewById(R.id.camera_switch);
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    mView.setFrontFacing(true);
+                    mView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);
+                }
+                else {
+                    mView.setFrontFacing(false);
+                    mView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);
+                }
+            }
+        });
+
         mView = (MyGLSurfaceView) findViewById(R.id.my_gl_surface_view);
+        mView.setMaxCameraPreviewSize(1280, 920);
         mView.setCameraTextureListener(mView);
     }
 
@@ -66,6 +90,19 @@ public class CameraActivity extends Activity {
                 }
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        mView.onResume();
+        super.onResume();
+    }
+
+
+    @Override
+    public void onPause() {
+        mView.onPause();
+        super.onPause();
     }
 
     public static int checkSelfPermission(Context context, String permission) {

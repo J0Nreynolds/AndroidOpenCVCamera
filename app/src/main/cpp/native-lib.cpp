@@ -14,7 +14,7 @@ extern "C" JNIEXPORT void
 JNICALL
 Java_net_jonreynolds_androidopencvcamera_MyGLSurfaceView_processFrame(JNIEnv *env, jobject /* this */,
                                                               jint texIn, jint texOut,
-                                                              jint w, jint h) {
+                                                              jint w, jint h, jboolean frontFacing) {
     LOGD("Processing on CPU");
     int64_t t;
 
@@ -33,6 +33,13 @@ Java_net_jonreynolds_androidopencvcamera_MyGLSurfaceView_processFrame(JNIEnv *en
     cv::Laplacian(m, m, CV_8U);
     m *= 10;
     LOGD("Laplacian() costs %d ms", getTimeInterval(t));
+
+    // Check if we should flip image due to frontFacing
+    // I don't think this should be required, but I can't find
+    // a way to get tne OpenCV Android SDK to do this properly
+    if(frontFacing){
+        cv::flip(m, m, 1);
+    }
 
     // write back
     glActiveTexture(GL_TEXTURE0);

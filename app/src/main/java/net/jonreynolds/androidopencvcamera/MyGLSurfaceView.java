@@ -18,6 +18,7 @@ public class MyGLSurfaceView extends CameraGLSurfaceView implements CameraGLSurf
     static final String LOGTAG = "MyGLSurfaceView";
     protected int  frameCounter;
     protected long lastNanoTime;
+    protected boolean frontFacing = false;
     TextView mFpsText = null;
 
     public MyGLSurfaceView(Context context, AttributeSet attrs) {
@@ -61,6 +62,10 @@ public class MyGLSurfaceView extends CameraGLSurfaceView implements CameraGLSurf
         });
     }
 
+    public void setFrontFacing(boolean frontFacing) {
+        this.frontFacing = frontFacing;
+    }
+
     @Override
     public boolean onCameraTexture(int texIn, int texOut, int width, int height) {
         // FPS
@@ -84,9 +89,11 @@ public class MyGLSurfaceView extends CameraGLSurfaceView implements CameraGLSurf
             lastNanoTime = System.nanoTime();
         }
 
-        processFrame(texIn, texOut, width, height);
+        processFrame(texIn, texOut, width, height, frontFacing);
         return true;
     }
 
-    public static native void processFrame(int tex1, int tex2, int w, int h);
+    public static native void processFrame(int tex1, int tex2, int w, int h, boolean frontFacing);
+
+
 }
