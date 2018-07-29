@@ -13,7 +13,7 @@ You can obtain the latest version of the OpenCV Android SDK at https://github.co
 Open the cloned version of this repo as a project in Android Studio. Then, click File -> New -> Import Module. Navigate to where you just extracted the OpenCV Android SDK files, and use *OpenCV-android-sdk/sdk/java* as the source directory for the import. Click Next, then click Finish, using the default import settings.
 
 ### Step 3 - Modify the OpenCV module's imported build.gradle
-A new directory called *openCVLibrary{VERSION_NUMBER}* was created in the root of the project after importing the OpenCV module (it may not be visible in Android Studio - reopening project may help). In this new directory, there's a file called *build.gradle*, which you must modify in order to meet the SDK requirements of the application. Make the following changes:
+After the import completes, a new folder *openCVLibrary{VERSION_NUMBER}* is created in the root of the project. In this directory, there's a file called *build.gradle*, which you must modify in order to meet the SDK requirements of the application. Make the following changes:
 
 #### In android
 compileSdkVersion 14 -> compileSdkVersion27
