@@ -1,12 +1,9 @@
 #include <jni.h>
-#include <string>
 
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
-#include <opencv2/core/ocl.hpp>
 
 #include <GLES2/gl2.h>
-#include <EGL/egl.h>
 
 #include "common.hpp"
 

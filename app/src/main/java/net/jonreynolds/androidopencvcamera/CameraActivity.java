@@ -15,7 +15,6 @@ public class CameraActivity extends Activity {
     // Used to load the 'native-lib' and 'opencv' libraries on application startup.
     static {
         System.loadLibrary("native-lib");
-        System.loadLibrary("opencv_java3");
     }
 
     private MyGLSurfaceView mView;
