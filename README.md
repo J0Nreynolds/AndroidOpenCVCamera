@@ -35,6 +35,8 @@ set(pathToProject /Users/jonathanreynolds/Documents/Projects/AndroidOpenCVCamera
 set(pathToOpenCv /Users/jonathanreynolds/Documents/Projects/OpenCV-android-sdk)
 ```
 Change */Users/jonathanreynolds/Documents/Projects/AndroidOpenCVCamera* to be the path to the project, and change */Users/jonathanreynolds/Documents/Projects/OpenCV-android-sdk* to be the path to your OpenCV Android SDK folder.
+### Step 6 - Build and run
+The app should build and run now. If you want to modify the behavior of the application, `MyGLSurfaceView.onCameraTexture` is the callback used in the Java layer, and it calls `processFrame` to do work in the native layer. 
 
 ## Credits
 I created this application referencing OpenCV's Android samples, namely [Tutorial 4 - OpenCL](https://github.com/opencv/opencv/tree/3.4/samples/android/tutorial-4-opencl). This sample used the OpenCV Android SDK's `CameraGLSurfaceView`, which provides a nice interface for intercepting and processing Android camera preview frames.
