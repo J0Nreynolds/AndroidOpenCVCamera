@@ -28,8 +28,9 @@ Create a new folder called *jniLibs* in the project's *app/src/main* folder. The
 
 ### Step 5 - Modify the CMakeLists.txt file
 Lastly, you just need to modify two strings in the CMakeList file to ensure your native libraries are linked correctly.
-Open the project's *app/CMakeLists.txt* file. The first two lines should look like this:
+Open the project's *app/CMakeLists.txt* file. The first three lines should look like this:
 ```
+# Path definitions
 set(pathToProject /Users/jonathanreynolds/Documents/Projects/AndroidOpenCVCamera)
 set(pathToOpenCv /Users/jonathanreynolds/Documents/Projects/OpenCV-android-sdk)
 ```
