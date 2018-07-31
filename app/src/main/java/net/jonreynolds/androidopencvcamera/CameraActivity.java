@@ -22,7 +22,7 @@ public class CameraActivity extends Activity {
     }
 
     private MyGLSurfaceView mView;
-    private Switch mSwitch = null;
+    private Switch mSwitch;
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 1337;
 
 
@@ -86,7 +86,7 @@ public class CameraActivity extends Activity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    this.setupApplication();
+                    //Permission granted
                 }
             }
         }
@@ -105,7 +105,7 @@ public class CameraActivity extends Activity {
         super.onPause();
     }
 
-    public static int checkSelfPermission(Context context, String permission) {
+    private static int checkSelfPermission(Context context, String permission) {
         if (permission == null) {
             throw new IllegalArgumentException("permission is null");
         }
