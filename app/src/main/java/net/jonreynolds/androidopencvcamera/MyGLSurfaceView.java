@@ -20,8 +20,6 @@ public class MyGLSurfaceView extends CameraGLSurfaceView implements CameraGLSurf
     protected long lastNanoTime;
     protected boolean frontFacing = false;
     TextView mFpsText = null;
-    private int mWidth = 0;
-    private int mHeight = 0;
 
     public MyGLSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);

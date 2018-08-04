@@ -47,6 +47,13 @@ set(pathToOpenCv /Users/jonathanreynolds/Documents/Projects/OpenCV-android-sdk)
 ```
 Change */Users/jonathanreynolds/Documents/Projects/AndroidOpenCVCamera* to be the path to the project, and change */Users/jonathanreynolds/Documents/Projects/OpenCV-android-sdk* to be the path to your OpenCV Android SDK folder.
 
+#### Note:
+For Windows, make sure you are careful with the format of strings you use. You need to use forward slashes between directories, and backslashes should only be used to escape whitespace characters. Example:
+
+> C:\Users\Jonathan Reynolds\Documents\GitHub\AndroidOpenCVCamera
+
+becomes `set(pathToProject C:/Users/Jonathan\ Reynolds/Documents/GitHub/AndroidOpenCVCamera)`
+
 ### Step 6 - Build and run
 The app should build and run now. If you want to modify the behavior of the application, `MyGLSurfaceView.onCameraTexture` is the callback used in the Java layer, and it calls *`processFrame`* to do work in the native layer.
 
